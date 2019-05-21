@@ -10,7 +10,7 @@ import java.util.Arrays;
 * 请写代码实现最终输出结果是：“27 38 46 50 91”
 * */
 public class RegexDemo4 {
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
 //        定义一个字符串
         String s = "91 27 46 38 50";
 
@@ -36,5 +36,42 @@ public class RegexDemo4 {
 //        trim() 方法旨在去掉字符串最后一个空格
 //        输出字符串
         System.out.println("result:" + result);
+    }*/
+
+
+    /*public static void main(String[] args) {
+        String s = "91 27 46 38 50";
+        String[] strArray = s.split(" ");
+//        char[] chs = s.toCharArray();
+//        int[] arr = Integer.parseInt(strArray);
+//        char[] chs = new char[];
+        int[] arr = new int[strArray.length];
+        for (int x = 0; x < arr.length; x++) {
+            arr[x] = Integer.parseInt(strArray[x]);
+        }
+        Arrays.sort(arr);
+        StringBuilder sb = new StringBuilder();
+        for (int x = 0; x < arr.length; x++) {
+            sb.append(arr[x]).append(" ");
+
+        }
+        String result = sb.toString().trim();
+        System.out.println(result);
+
+    }*/
+    public static void main(String[] args) {
+        String s = "91 27 46 38 50";
+        String[] strArray = s.split(" ");
+        int[] arr = new int[strArray.length];
+        for (int x = 0; x < arr.length; x++) {
+            arr[x] = Integer.parseInt(strArray[x]);//把字符串数组中的91，27，46，38，50等转换成十进制的91，27，46，38，50等
+        }
+        Arrays.sort(arr);
+        StringBuilder sb = new StringBuilder();
+        for (int x = 0; x < arr.length; x++) {
+            sb.append(arr[x]).append(" ");
+        }
+        String result = sb.toString().trim();
+        System.out.println("reslut:" + result);
     }
 }

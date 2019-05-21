@@ -1,0 +1,357 @@
+2.String 类
+字符串：就是由多个字符组成的一串数据。也可以看成是一个字符数组。
+ * 通过查看API，我们可以知道
+ *         A:字符串字面值"abc"也可以看成是一个字符串对象。
+ *         B:字符串是常量，一旦被赋值，就不能被改变。
+3.String类的构造方法
+ 
+ * 构造方法：
+          public String():空构造
+          public String(byte[] bytes):把字节数组转成字符串
+         public String(byte[] bytes,int index,int length):把字节数组的一部分转成字符串
+         public String(char[] value):把字符数组转成字符串
+         public String(char[] value,int index,int count):把字符数组的一部分转成字符串
+         public String(String original):把字符串常量值转成字符串
+ 
+  字符串的方法：
+       public int length()：返回此字符串的长度。
+4.字符串是常量，一旦被赋值，就不能被改变。
+5.字符串如果是变量相加，先开空间，再拼接。
+  字符串如果是常量相加，是先加，然后在常量池找，如果有就直接返回，否则，就创建。
+8. String类的判断功能：
+ * boolean equals(Object obj):比较字符串的内容是否相同,区分大小写
+ * boolean equalsIgnoreCase(String str):比较字符串的内容是否相同,忽略大小写
+ * boolean contains(String str):判断大字符串中是否包含小字符串
+ * boolean startsWith(String str):判断字符串是否以某个指定的字符串开头
+ * boolean endsWith(String str):判断字符串是否以某个指定的字符串结尾
+ * boolean isEmpty():判断字符串是否为空。
+9.String类的获取功能
+ * int length():获取字符串的长度。
+ * char charAt(int index):获取指定索引位置的字符
+ * int indexOf(int ch):返回指定字符在此字符串中第一次出现处的索引。
+ *         为什么这里是int类型，而不是char类型?
+ *         原因是：'a'和97其实都可以代表'a'
+ * int indexOf(String str):返回指定字符串在此字符串中第一次出现处的索引。
+ * int indexOf(int ch,int fromIndex):返回指定字符在此字符串中从指定位置后第一次出现处的索引。
+ * int indexOf(String str,int fromIndex):返回指定字符串在此字符串中从指定位置后第一次出现处的索引。
+ * String substring(int start):从指定位置开始截取字符串,默认到末尾。包含start这个索引
+ * String substring(int start,int end):从指定位置开始到指定位置结束截取字符串。包括start索引但是不包end索引
+12.String的转换功能：
+  byte[] getBytes():把字符串转换为字节数组。
+  char[] toCharArray():把字符串转换为字符数组。
+ static String valueOf(char[] chs):把字符数组转成字符串。
+ static String valueOf(int i):把int类型的数据转成字符串。
+   注意：String类的valueOf方法可以把任意类型的数据转成字符串。
+  String toLowerCase():把字符串转成小写。
+  String toUpperCase():把字符串转成大写。
+  String concat(String str):把字符串拼接。
+14.String类的其他功能：
+  
+ 替换功能：
+  String replace(char old,char new)
+  String replace(String old,String new)
+ 
+  去除字符串两空格  (只可以去除前后的空格而不能去除中间的空格)
+  String trim()
+  
+  按字典顺序比较两个字符串  
+ int compareTo(String str)
+ int compareToIgnoreCase(String str)
+ 
+ 
+去除字符串两空格  (只可以去除前后的空格而不能去除中间的空格)
+  String trim()
+ 
+// 去除字符串两空格
+
+day13
+1.StringBuffer
+* StringBuffer和String的区别?
+ * 前者长度和内容可变，后者不可变。
+ * 如果使用前者做字符串的拼接，不会浪费太多的资源。
+2.StringBuffer的构造方法：
+ *  public StringBuffer():无参构造方法(最常用，相当于造了一个水杯而没有装水)
+ *  public StringBuffer(int capacity):指定容量的字符串缓冲区对象
+ *  public StringBuffer(String str):指定字符串内容的字符串缓冲区对象
+3.StringBuffer的方法：
+ *        public int capacity()：返回当前容量。    理论值(水杯最多可以装多少水)
+ *        public int length():返回长度（字符数）。 实际值(实际上水杯有多少水)
+4.StringBuffer的添加功能：
+ * public StringBuffer append(String str):可以把任意类型数据添加到字符串缓冲区里面,并返回字符串缓冲区本身
+ * 
+ * public StringBuffer insert(int offset,String str):在指定位置把任意类型的数据插入到字符串缓冲区里面,并返回字符串缓冲区本身
+5.StringBuffer的删除功能
+ * public StringBuffer deleteCharAt(int index):删除指定位置的字符，并返回本身
+ * public StringBuffer delete(int start,int end):删除从指定位置开始指定位置结束的内容，并返回本身(包括start不包括end)
+ 
+        // 需求:我要删除所有的数据
+        sb.delete(0, sb.length());
+ 
+6.StringBuffer的替换功能：
+ * public StringBuffer replace(int start,int end,String str):从start开始到end用str替换
+7.StringBuffer的反转功能：(Stirng类没有)
+ * public StringBuffer reverse()
+ 
+8.StringBuffer的截取功能:注意返回值类型不再是StringBuffer本身了
+ * public String substring(int start)
+ * public String substring(int start,int end)
+14.StringBuffer和数组的区别?
+ * 二者都可以看出是一个容器，装其他的数据。
+ * 但是呢,StringBuffer的数据最终是一个字符串数据。
+ * 而数组可以放置多种数据，但必须是同一种数据类型的。
+ * 
+ * 3:形式参数问题
+ * String作为参数传递
+ * StringBuffer作为参数传递 
+形式参数：
+ *         基本类型：形式参数的改变不影响实际参数
+ *         引用类型：形式参数的改变直接影响实际参数
+ * 
+ * 注意：
+ *         String作为参数传递，效果和基本类型作为参数传递是一样的。
+ 15.代码摘录：数组冒泡排序
+===================================================
+/*
+ * 数组排序之冒泡排序：
+ *         相邻元素两两比较，大的往后放，第一次完毕，最大值出现在了最大索引处
+ */
+16.代码摘录：数组选择排序
+数组排序之选择排序：
+ *         从0索引开始，依次和后面元素比较，小的往前放，第一次完毕，最小值出现在了最小索引处
+17.二分查找
+思路
+ 查找：
+ *         基本查找:数组元素无序(从头找到尾)
+ *         二分查找(折半查找):数组元素有序
+ * 
+ * 分析：
+ *         A:定义最大索引，最小索引
+ *         B:计算出中间索引
+ *         C:拿中间索引的值和要查找的值进行比较
+ *             相等：就返回当前的中间索引
+ *             不相等：
+ *                 大    左边找
+ *                 小    右边找
+ *         D:重新计算出中间索引
+ *             大    左边找
+ *                 max = mid - 1;
+ *             小    右边找
+ *                 min = mid + 1;
+ *         E:回到B
+ */
+18.Arrays类  大多为静态方法
+Arrays:针对数组进行操作的工具类。比如说排序和查找。
+ * 1:public static String toString(int[] a) 把数组转成字符串
+ * 2:public static void sort(int[] a) 对数组进行排序
+ * 3:public static int binarySearch(int[] a,int key) 二分查找
+21.int类型和String类型的相互转换
+int -- String
+ *         String.valueOf(number)
+ * 
+ * String -- int
+ *         Integer.parseInt(s)
+22.常用的基本进制转换
+ * public static String toBinaryString(int i)
+ * public static String toOctalString(int i)
+ * public static String toHexString(int i)
+* 十进制到其他进制
+ * public static String toString(int i,int radix)
+ * 由这个我们也看到了进制的范围：2-36
+* 其他进制到十进制
+ * public static int parseInt(String s,int radix)
+26.Character类的常用方法
+public static boolean isUpperCase(char ch):判断给定的字符是否是大写字符
+ * public static boolean isLowerCase(char ch):判断给定的字符是否是小写字符
+ * public static boolean isDigit(char ch):判断给定的字符是否是数字字符
+ * public static char toUpperCase(char ch):把给定的字符转换为大写字符
+ * public static char toLowerCase(char ch):把给定的字符转换为小写字符
+举例
+System.out.println("isUpperCase:" + Character.isUpperCase('A'));
+System.out.println("isLowerCase:" + Character.isLowerCase('a'));
+System.out.println("isDigit:" + Character.isDigit('0'));
+day14
+1.正则表达式：是指一个用来描述或者匹配一系列符合某个句法规则的字符串的单个字符串。其实就是一种规则。有自己特殊的应用。
+2.正则表达式的规则 
+规则字符在java.util.regexPattern类中
+A:字符
+    x 字符 x。举例：'a'表示字符a(任意的字符表示它本身)
+    \\ 反斜线字符。("\\"表示反斜线\)
+    \n 新行（换行）符 ('\u000A') 
+    \r 回车符 ('\u000D')
+B:字符类(把很多字符都放到一起)
+    [abc] a、b 或 c（简单类）(意为匹配三选一，但不能同时匹配两个，例如ab) 
+    [^abc] 任何字符，除了 a、b 或 c（否定） 
+    [a-zA-Z] a到 z 或 A到 Z，两头的字母包括在内（范围） (这个写法就意味着包括了所有英文字母)
+    [0-9] 0到9的字符都包括
+ 
+例如上面：[1-9][0-9]{4,14}
+代表qq号码第一个数字在1~9范围之内(也就是不能为零)，第二个数字开始(后面的{4,14}规定了除了第一个数字之外，还包含了4~14之间任意的数字个数，而这些数字的取值范围就在0-9之间)(总的来说就是qq号码一共是5-15个数字，其中第一个数字不能为零，剩余的4-14个数字可以为零)
+ 
+C:预定义字符类(\有转义字符的意思)
+    . 任何字符。我的就是.字符本身，怎么表示呢? \.
+    \d 数字：[0-9]
+例如上面：[1-9][0-9]{4,14}可以改写为[1-9]\\d{4,14}
+    \w 单词字符：[a-zA-Z_0-9]
+        在正则表达式里面组成单词的东西必须有这些东西组成
+D:边界匹配器
+    ^ 行的开头 
+    $ 行的结尾 
+    \b 单词边界
+        就是不是单词字符的地方。(单词与单词之间隔开的东西，如下面单词与单词之间的空格，还有？;)
+        举例：hello world?haha;xixi
+E:Greedy 数量词 
+    X? X，一次或一次也没有(0次或者1次)
+    X* X，零次或多次（0次或者1次以上）
+    X+ X，一次或多次
+    X{n} X，恰好 n 次 
+    X{n,} X，至少 n 次 
+    X{n,m} X，至少 n 次，但是不超过 m 次 
+例如上面：[1-9][0-9]{4,14}代表[0-9]至少出现4次但不超过14次([1-9]不给出次数，默认为一次)
+3.
+ * 判断功能
+ *        String类的public boolean matches(String regex)
+ *
+5.正则表达式 分割功能
+String类的public String[] split(String regex)
+    根据给定正则表达式的匹配拆分此字符串
+8.正则表达式替换功能
+     String类的public String replaceAll(String regex,String replacement)
+     使用给定的 replacement 替换此字符串所有匹配给定的正则表达式的子字符串。
+11.Math类
+Math:用于数学运算的类。
+  成员变量：
+          public static final double PI
+         public static final double E
+  成员方法：
+          public static int abs(int a)：绝对值
+         public static double ceil(double a):向上取整
+         public static double floor(double a):向下取整
+        public static int max(int a,int b):最大值 (min自学)
+         public static double pow(double a,double b):a的b次幂
+         public static double random():随机数 [0.0,1.0)
+         public static int round(float a) 四舍五入(参数为double的自学)
+         public static double sqrt(double a):正平方根
+13.Random类
+Random:产生随机数的类
+import java.util.Random;
+构造方法：
+         public Random():没有给种子，用的是默认种子，是当前时间的毫秒值
+         public Random(long seed):给出指定的种子
+ 
+        给定种子后，每次得到的随机数是相同的。
+ 
+  成员方法：
+          public int nextInt()：返回的是int范围内的随机数
+         public int nextInt(int n):返回的是[0,n)范围的内随机数
+15.System.exit(0)
+public static void exit(int status):终止当前正在运行的 Java 虚拟机。参数用作状态码；根据惯例，非 0 的状态码表示异常终止。(0表示正常)
+所以，建议用exit(0);
+17.system类 arraycopy(注意，arraycopy并不符合命名规则(since JDK1.0)，但是不改了)
+public static void arraycopy(Object src,int srcPos,Object dest,int destPos,int length)
+   从指定源数组中复制一个数组，复制从指定的位置开始，到目标数组的指定位置结束。
+18.BigInteger类---可以让超过Integer范围内的数据进行运算(即超过2147483647)
+java.math.BigInteger
+public BigInteger add(BigInteger val):加
+ public BigInteger subtract(BigInteger val):减
+  public BigInteger multiply(BigInteger val):乘
+  public BigInteger divide(BigInteger val):除
+  public BigInteger[] divideAndRemainder(BigInteger val):返回商和余数的数组
+
+BigInteger bi1 = new BigInteger("100");
+ BigInteger bi2 = new BigInteger("50");
+ 
+BigInteger[] bis = bi1.divideAndRemainder(bi2);
+ System.out.println("商：" + bis[0]);//2
+ System.out.println("余数：" + bis[1]);//0
+19.  BigDecimal
+由于在运算的时候，float类型和double很容易丢失精度，演示案例。所以，为了能精确的表示、计算浮点数，Java提供了BigDecimal
+
+ 
+public BigInteger add(BigInteger val):加
+ * public BigInteger subtract(BigInteger val):减
+ * public BigInteger multiply(BigInteger val):乘
+ * public BigInteger divide(BigInteger val):除
+ * public BigInteger[] divideAndRemainder(BigInteger val):返回商和余数的数组
+20.Date类
+ 
+Date:表示特定的瞬间，精确到毫秒。
+Date的构造方法
+        Date():根据当前的默认毫秒值创建日期对象
+       Date(long date)：根据给定的毫秒值创建日期对象
+21.Date类的一些方法
+public long getTime():获取时间，以毫秒为单位
+ public void setTime(long time):设置时间
+ 
+掌握两个方法(转换)
+从Date得到一个毫秒值
+          getTime()
+  把一个毫秒值转换为Date
+ o        构造方法
+         setTime(long time)
+ 
+/ 创建对象
+        Date d = new Date();
+ 
+        // 获取时间
+        long time = d.getTime();
+        System.out.println(time);
+        // System.out.println(System.currentTimeMillis());
+ 
+        System.out.println("d:" + d);
+        // 设置时间
+        d.setTime(1000);//1000代表1000毫秒
+        System.out.println("d:" + d);
+ 22.DateFormat
+ String和Date的相互转换理解
+
+  
+ Date     --     String(格式化)
+           public final String format(Date date)(这个是具体子类SimpleDateFormat的父类DateForamt中的一个方法)
+   
+   String -- Date(解析)
+          public Date parse(String source)
+  
+   DateForamt:可以进行日期和字符串的格式化和解析，但是由于是抽象类，所以使用具体子类SimpleDateFormat。
+  
+ // Date -- String
+         // 创建日期对象
+         Date d = new Date();
+         // 创建格式化对象
+         // SimpleDateFormat sdf = new SimpleDateFormat();
+         // 给定模式
+         SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+         // public final String format(Date date)
+         String s = sdf.format(d);//子类调用父类的方法
+         System.out.println(s);
+ 总结：
+ Date     --     String(格式化)
+          public final String format(Date date)
+   
+   String -- Date(解析)
+           public Date parse(String source)
+   
+   DateForamt:可以进行日期和字符串的格式化和解析，但是由于是抽象类，所以使用具体子类SimpleDateFormat。
+   
+   SimpleDateFormat的构造方法：
+          SimpleDateFormat():默认模式
+          SimpleDateFormat(String pattern):给定的模式
+               这个模式字符串该如何写呢?
+              通过查看API，我们就找到了对应的模式
+              
+  年 y
+               月 M    
+               日 d
+               时 H
+               分 m
+               秒 s
+ 具体方法
+ -1-.日期转字符串
+ Date d = new Date();
+ SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");//给定模式
+ String s = sdf.format(d);//format意为格式化
+ System.out.println(s);
+ -2-字符串转日期
+ String str = "2008-08-08 12:12:12";
+ //在把一个字符串解析为日期的时候，请注意格式必须和给定的字符串格式匹配
+ SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+ Date dd = sdf2.parse(str);//parse意为解析
